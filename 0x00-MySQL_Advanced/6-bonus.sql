@@ -1,5 +1,5 @@
 -- CREATE a stored procedure AddBonus that adds a new correction for a student
-DROP PROCEDURE ID EXISTS addBonus;
+DROP PROCEDURE IF EXISTS addBonus;
 DELIMITER $$
 CREATE PROCEDURE addBonus (user_id INT, project_name VARCHAR(255), score FLOAT)
 BEGIN
@@ -8,7 +8,7 @@ BEGIN
 
 	SELECT COUNT(id) INTO project_count FROM projects
 	WHERE name = project_name;
-	IF project_count = 0 ThEN
+	IF project_count = 0 THEN
 		INSERT INTO projects(name) VALUES(project_name);
 	END IF;
 	SELECT id INTO project_id FROM projects
