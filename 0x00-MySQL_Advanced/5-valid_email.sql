@@ -1,4 +1,5 @@
--- CREATE a trigger that resets the attribute valid_email only when the email has been changed
+-- CREATE a trigger that resets the attribute valid_email
+-- only when the email has been changed
 DROP TRIGGER IF EXISTS validate_email;
 DELIMITER $$
 CREATE TRIGGER validate_email
@@ -10,5 +11,5 @@ FOR EACH ROW
 		ELSE
 			SET NEW.valid_email = NEW.valid_email;
 		END IF;
-	END$$
-DELIMITER;
+	END $$
+DELIMITER ;
