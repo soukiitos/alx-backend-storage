@@ -11,7 +11,7 @@ BEGIN
 	SELECT COUNT(*) INTO projects_count from corrections
 	WHERE corrections.user_id = user_id;
 	UPDATE users
-	SET users.averge_score = IF(projects_count = 0, 0, total_score / projects_count)
+	SET users.average_score = IF(projects_count = 0, 0, total_score / projects_count)
 	WHERE users.id = user_id;
 END $$
 DELIMITER ;
