@@ -7,4 +7,4 @@ def list_all(mongo_collection):
     '''Define list_all'''
     if not mongo_collection:
         return []
-    return lidt(mongo_collection.find())
+    return list(mongo_collection.find())
