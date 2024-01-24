@@ -17,5 +17,5 @@ def get_page(url: str) -> str:
         redis_store.incr(request)
         return result
     result = requests.get(url).content.decode('utf-8')
-    redis_store.setex(key, timedelta(seconds=10), result)
+    redis_store.setex(key, int(timedelta(seconds=10).total_seconds()), result)
     return result
