@@ -6,14 +6,14 @@ from pymongo import MongoClient
 def get_stat():
     '''Define get_stat'''
     client = MongoClient('mongodb://127.0.0.1:27017')
-    get_logs = client.logs.nginx
-    tot_logs = get_logs.count_document({})
-    get_meth = get_logs.count_document({"method": "GET"})
-    post_meth = get_logs.count_document({"method": "POST"})
-    put_meth = get_logs.count_document({"method": "PUT"})
-    patch_meth = get_logs.count_document({"method": "PATCH"})
-    delete_meth = get_logs.count_document({"method": "DELETE"})
-    path_meth = get_logs.count_document({"method": "GET", "path": "/status"})
+    get_logs = client.logs["nginx"]
+    tot_logs = get_logs.count_documents({})
+    get_meth = get_logs.count_documents({"method": "GET"})
+    post_meth = get_logs.count_documents({"method": "POST"})
+    put_meth = get_logs.count_documents({"method": "PUT"})
+    patch_meth = get_logs.count_documents({"method": "PATCH"})
+    delete_meth = get_logs.count_documents({"method": "DELETE"})
+    path_meth = get_logs.count_documents({"method": "GET", "path": "/status"})
     print(f"{tot_logs} logs")
     print("Methods:")
     print(f"\tmethod GET: {get_meth}")

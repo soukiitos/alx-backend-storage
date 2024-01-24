@@ -5,4 +5,4 @@ import pymongo
 
 def schools_by_topic(mongo_collection, topic):
     '''Define schools_by_topic'''
-    return mongo_collection.find({"topic": topic})
+    return mongo_collection.find({"topics": topic})
