@@ -10,12 +10,12 @@ def get_page(url: str) -> str:
     if url is None or len(url.strip()) == 0:
         return ''
     redis_store = redis.Redis()
-    key = 'result:{}'.format(url)
-    request = 'count:{}'.format(url)
-    result = redis_store.get(key)
+    r_key = 'result:{}'.format(url)
+    req_uest = 'count:{}'.format(url)
+    result = redis_store.get(r_key)
     if result is not None:
-        redis_store.incr(request)
+        redis_store.incr(req_uest)
         return result
     result = requests.get(url).content.decode('utf-8')
-    redis_store.setex(key, int(timedelta(seconds=10).total_seconds()), result)
+    redis_store.setex(r_key, timedelta(seconds=10), result)
     return result
