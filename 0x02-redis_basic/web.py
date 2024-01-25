@@ -15,7 +15,7 @@ def get_page(url: str) -> str:
     result = redis_store.get(r_key)
     if result is not None:
         redis_store.incr(req_uest)
-        return result
+        return result.decode('utf-8')
     result = requests.get(url).content.decode('utf-8')
     redis_store.setex(r_key, timedelta(seconds=10), result)
     return result

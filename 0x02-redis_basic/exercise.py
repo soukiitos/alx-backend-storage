@@ -66,9 +66,13 @@ class Cache:
             -> Union[str, bytes, int, float, None]:
         '''Define get'''
         data = self._redis.get(key)
-        if data is not None and fn is not None and Callable(fn):
-            return fn(data)
-        return data
+        if data is not None:
+            if fn is not None:
+                if fn == int:
+                    raise ValueError("Cannot apply int() conversion")
+                elif Callable(fn):
+                    return fn(data)
+            return data
 
     def get_str(self, key: str) -> str:
         '''Define get_str'''
